@@ -27,3 +27,9 @@ export const bilibiliConfig = {
     type:"api",
     dataKey:'bilibiliHotRank'
 }
+
+export const ITConfig = {
+    url:"https://www.ithome.com/",
+    type:"html",
+    dataKey:"itHotRank"
+}

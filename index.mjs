@@ -6,6 +6,7 @@ import ScrapyWeibo from "./scrapy-weibo.mjs";
 import ScrapyZhihu from "./scrapy-zhihu.mjs";
 import ScrapyBilibili from "./scrapy-bilibili.mjs";
 import ScrapyToutiao from "./scrapy-toutiao.mjs";
+import ScrapyIT from "./scrapy-IT.mjs";
 
 RedisEngine.Instance().connect();
 
@@ -53,6 +54,9 @@ app.get('/rankList',function(req,res){
             case "5":
                 dataKey = "bilibiliHotRank"
                 break;
+            case "6":
+                dataKey = "ITHotRank"
+                break;
             default:
         }
         RedisEngine.Instance().get(dataKey).then(result=>{
@@ -77,13 +81,14 @@ const server = app.listen(3001, function () {
 
 // 开始抓取排行榜任务
 const rule = new schedule.RecurrenceRule();
-rule.second = 10;//每分钟的10秒执行任务
+rule.minute = [0,5,10,15,20,25,30,35,40,45,50,55];//每分钟的10秒执行任务
 
 const baiduTask = new ScrapyBaidu();
 const weiboTask = new ScrapyWeibo();
 const zhihuTask = new ScrapyZhihu();
 const bilibiliTask = new ScrapyBilibili();
 const toutiaoTask = new ScrapyToutiao();
+const ITTask = new ScrapyIT();
 
 
 const job = schedule.scheduleJob(rule,function(){
@@ -93,4 +98,5 @@ const job = schedule.scheduleJob(rule,function(){
     zhihuTask.start();
     bilibiliTask.start();
     toutiaoTask.start();
+    ITTask.start();
 })
