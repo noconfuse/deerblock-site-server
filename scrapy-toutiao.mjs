@@ -14,7 +14,7 @@ export default class ScrapyToutiao{
                 toutiaoHotItems.push({
                     trendNum:item.HotValue,
                     itemTitle:item.Title,
-                    itemLink:`https://www.toutiao.com/trending/7161208337638359055/?rank=${index+1}`,
+                    itemLink:`https://www.toutiao.com/trending/${item.ClusterId}/?rank=${index+1}`,
                     itemLabel:item.Label =='hot'?"热":item.Label =='new'?"新":'',
                     itemCategory:encodeURI(item.InterestCategory)
                 })
