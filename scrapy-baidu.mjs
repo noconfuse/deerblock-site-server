@@ -21,10 +21,12 @@ export default class ScrapyBaidu{
                 const trendNum =  $(".trend_2RttY .hot-index_1Bl1a",el).text();
                 const itemTitle = $(".content_1YWBm .c-single-text-ellipsis",el).text();
                 const itemLink = $(".content_1YWBm a").attr("href");
+                const itemLable = $('.content_1YWBm .hot-tag_1G080',el).text();
                 baiduHotItems.push({
                     trendNum,
                     itemTitle,
-                    itemLink
+                    itemLink,
+                    itemLable:itemLable.trim()
                 })
             })
             

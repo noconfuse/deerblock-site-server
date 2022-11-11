@@ -19,7 +19,7 @@ export default class ScrapyBilibili{
                     trendNum:'',
                     itemTitle:item.show_name,
                     itemLink:`https://search.bilibili.com/all?keyword=${encodeURIComponent(item.keyword)}&from_source=webtop_search`,
-                    itemLabel:item.icon,
+                    itemLabel:item.word_type==4?"新":item.word_type==5?"热":"",
                     itemCategory:''
                 })
             })
