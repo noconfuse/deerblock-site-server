@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import RedisEngine from "./redis.mjs";
 import schedule from 'node-schedule';
 import ScrapyBaidu from "./scrapy-baidu.mjs";
@@ -66,6 +66,14 @@ app.get('/rankList', function (req, res) {
                 res.json(response);
             }
         })
+    })
+})
+
+app.get('/location',function(req,res){
+    const ip = req.ip;
+    const time = Date.now().valueOf();
+    axios.get("http://ip-api.com/json/"+ip+"?fields=25&lang=zh-CN&t=" + time).then(response=>{
+        res.json(response.data)
     })
 })
 
